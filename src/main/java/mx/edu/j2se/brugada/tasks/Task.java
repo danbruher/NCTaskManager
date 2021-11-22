@@ -12,12 +12,18 @@ public class Task {
 
     /** Constructs an inactive task to run at a specified time without repeating with a given name.*/
     public Task (String title, int time){
+        this.title = title;
+        this.time = time;
 
     }
 
     /** Constructs an inactive task to run within the specified time range with the set repetition interval and
      *  with a given name.*/
     public Task (String title, int start, int end, int interval){
+        this.title = title;
+        this.start = start;
+        this.end = end;
+        this.interval = interval;
     }
 
     /** Method for reading the task name.*/
@@ -77,7 +83,12 @@ public class Task {
 
     /** Returns the next start  time  of  the  task  execution  after  the  current  time.*/
     public int nextTimeAfter(int time) {
-        return -1;
+        if(active && repeated) {
+            return end - time;
+        }
+        else{
+            return -1;
+        }
     }
 
 }
